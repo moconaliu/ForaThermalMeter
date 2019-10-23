@@ -39,3 +39,69 @@ print("start connecting to Fora TD-1241")
 
 conn = bluepy.btle.Peripheral(addr,"random")
 print("connected.....")
+
+'''
+conn.setDelegate( MyDelegate() )
+ 
+service_uuid = bluepy.btle.UUID(BLE_SERVICE_UUID)
+ble_service = conn.getServiceByUUID(service_uuid)
+
+uuidConfig = bluepy.btle.UUID(BLE_CHARACTERISTIC_UUID)
+data_chrc = ble_service.getCharacteristics(uuidConfig)[0]
+'''
+
+'''
+services_dic = conn.getServices()
+
+print("Services......")
+for service in services_dic:
+    print(service.uuid)
+
+
+charac_dic = service.getCharacteristics()
+
+
+print("Characteristic......")
+for charac in charac_dic:
+    print(charac.uuid)
+'''
+
+services_dic = conn.getServiceByUUID('00001523-1212-efde-1523-785feabcd123')
+charac_dic = services_dic.getCharacteristics()[0]
+#print(charac_dic.uuid)
+
+data = charac_dic.read()
+print('Get data:',data)
+#print('len of  data:',len(data))
+
+#try:
+#    charac_dic = services_dic.getCharacteristics()[0]
+#    while 1:
+#       val = binascii.b2a_hex(charac_dic.read())
+
+#val = binascii.b2a_hex(data)
+#val = binascii.unhexlify(val)
+#val = struct.unpack('f', val)[0]
+#print (str(val) + " deg C")
+
+#       time.sleep(1)
+
+#finally:
+#     conn.disconnect()
+
+#temp_uuid = UUID(0x1524)
+
+
+#charac_dic = service.getCharacteristics()
+
+
+#print("Characteristic......")
+#for charac in charac_dic:
+#    print(charac.uuid)
+
+
+#data = charac.read() #read data
+
+#data = data[0]
+#print('Get data:',data)
+
